@@ -33,6 +33,8 @@ required_env_variables:
   - AWS_SECRET_ACCESS_KEY_GOVCLOUD
   - BP_AWS_SES_DEFAULT_ZONE
   - CLOUD_GOV_ENVIRONMENT
+  - CLOUD_GOV_EMAIL_NOTIFICATION_TOPIC_ARN
+  - CLOUD_GOV_SLACK_NOTIFICATION_TOPIC_ARN
 env_config_mapping:
   AWS_ACCESS_KEY_ID_COMMERCIAL: aws.commercial.access_key_id
   AWS_ACCESS_KEY_ID_GOVCLOUD: aws.govcloud.access_key_id
@@ -42,3 +44,5 @@ env_config_mapping:
   AWS_SECRET_ACCESS_KEY_GOVCLOUD: aws.govcloud.secret_access_key
   BP_AWS_SES_DEFAULT_ZONE: brokerpaks.aws_ses.default_zone
   CLOUD_GOV_ENVIRONMENT: cloud_gov.environment
+  CLOUD_GOV_EMAIL_NOTIFICATION_TOPIC_ARN: cloud_gov.email_notification_topic_arn
+  CLOUD_GOV_SLACK_NOTIFICATION_TOPIC_ARN: cloud_gov.slack_notification_topic_arn

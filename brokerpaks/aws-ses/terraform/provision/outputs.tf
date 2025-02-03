@@ -26,6 +26,10 @@ output "domain_arn" {
   value = aws_sesv2_email_identity.identity.arn
 }
 
+output "reputation_topic_arn" {
+  value = aws_sns_topic.ses_reputation_notifications
+}
+
 output "bounce_topic_arn" {
   value = local.bounce_topic_sns_arn
 }

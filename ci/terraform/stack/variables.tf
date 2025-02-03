@@ -69,15 +69,15 @@ variable "csb_docproxy_domain" {
   type = string
 }
 
-variable "csb_docproxy_docker_image_name" {
+variable "csb_helper_docker_image_name" {
   type = string
 }
 
-variable "csb_docproxy_docker_image_version" {
+variable "csb_helper_docker_image_version" {
   type = string
 }
 
-variable "csb_docproxy_instances" {
+variable "csb_helper_instances" {
   type    = number
   default = 1
 }

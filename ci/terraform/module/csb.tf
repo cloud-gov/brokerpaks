@@ -38,6 +38,7 @@ resource "cloudfoundry_app" "csb" {
     TERRAFORM_UPGRADES_ENABLED = true
 
     # Access keys for managing resources provisioned by brokerpaks
+    AWS_USE_FIPS_ENDPOINTS           = true
     AWS_ACCESS_KEY_ID_GOVCLOUD       = var.aws_access_key_id_govcloud
     AWS_SECRET_ACCESS_KEY_GOVCLOUD   = var.aws_secret_access_key_govcloud
     AWS_REGION_GOVCLOUD              = var.aws_region_govcloud
@@ -46,7 +47,9 @@ resource "cloudfoundry_app" "csb" {
     AWS_REGION_COMMERCIAL            = var.aws_region_commercial
 
     # Other values that are used by convention by all brokerpaks
-    CLOUD_GOV_ENVIRONMENT = var.stack_name
+    CLOUD_GOV_ENVIRONMENT                  = var.stack_name
+    CLOUD_GOV_EMAIL_NOTIFICATION_TOPIC_ARN = var.email_notification_topic_arn
+    CLOUD_GOV_SLACK_NOTIFICATION_TOPIC_ARN = var.slack_notification_topic_arn
 
     # Brokerpak-specific variables
     BP_AWS_SES_DEFAULT_ZONE = var.aws_ses_default_zone
@@ -77,7 +80,7 @@ resource "cloudfoundry_route" "csb_docs" {
   path   = "/docs"
 
   destinations = [{
-    app_id = cloudfoundry_app.docproxy.id
+    app_id = cloudfoundry_app.helper.id
   }]
 }
 

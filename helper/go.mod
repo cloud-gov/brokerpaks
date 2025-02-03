@@ -1,4 +1,4 @@
-module github.com/cloud-gov/csb/docproxy
+module github.com/cloud-gov/csb/helper
 
 go 1.23.1
 

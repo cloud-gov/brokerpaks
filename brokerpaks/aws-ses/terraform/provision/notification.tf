@@ -1,15 +1,3 @@
-resource "aws_sesv2_configuration_set" "config" {
-  configuration_set_name = "${var.instance_id}-config"
-
-  delivery_options {
-    tls_policy = "REQUIRE" # TODO check if BOD requires this
-  }
-
-  lifecycle {
-    prevent_destroy = true
-  }
-}
-
 # Create SNS topic for bounce messages
 resource "aws_sns_topic" "bounce_topic" {
   count = (var.enable_feedback_notifications ? 1 : 0)

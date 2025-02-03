@@ -1,16 +1,16 @@
-resource "cloudfoundry_app" "docproxy" {
-  name       = "docproxy"
+resource "cloudfoundry_app" "helper" {
+  name       = "csb-helper"
   org_name   = var.org_name
   space_name = var.space_name
 
-  docker_image = "${var.docproxy_docker_image_name}${var.docproxy_docker_image_version}"
+  docker_image = "${var.helper_docker_image_name}${var.helper_docker_image_version}"
   docker_credentials = {
     "username" = var.ecr_access_key_id
     "password" = var.ecr_secret_access_key
   }
 
-  command   = "/app/docproxy"
-  instances = var.docproxy_instances
+  command   = "/app/helper"
+  instances = var.helper_instances
   memory    = "128M"
 
   environment = {
@@ -25,13 +25,14 @@ data "cloudfoundry_domain" "docproxy_parent_domain" {
   name = var.docproxy_domain
 }
 
+// Route is specific to the documentation feature of the csb-helper.
 resource "cloudfoundry_route" "docproxy" {
   domain = data.cloudfoundry_domain.docproxy_parent_domain.id
   space  = data.cloudfoundry_space.brokers.id
   host   = "services"
 
   destinations = [{
-    app_id = cloudfoundry_app.docproxy.id
+    app_id = cloudfoundry_app.helper.id
   }]
 }
 

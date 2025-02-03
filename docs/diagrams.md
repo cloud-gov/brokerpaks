@@ -120,8 +120,7 @@ flowchart LR
             logs["logs.fr.cloud.gov - Cloud.gov Logs"]
             etc["(...other services...)"]
             capi["api.fr.cloud.gov - Cloud Foundry API"]
-            docproxy["services.cloud.gov - Cloud Service Broker Documentation Proxy"]:::new
-            updater["Service updater (internal only)"]:::new
+            csb-helper["services.cloud.gov - CSB Helper"]:::new
 
             subgraph "Service Brokers"
                 csb["csb.app.cloud.gov - Cloud Service Broker"]:::new
@@ -133,7 +132,7 @@ flowchart LR
     u -->|Logs Dashboard| logs
     u -->|Other requests| etc
     u -->|OSBAPI requests| capi
-    u -->|Documentation page| docproxy
+    u -->|Documentation page| csb-helper
     capi --> csb
-    docproxy --> csb
+    csb-helper --> csb
 ```

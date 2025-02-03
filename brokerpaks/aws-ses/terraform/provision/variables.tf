@@ -89,3 +89,13 @@ variable "cloud_gov_environment" {
   type        = string
   description = "The cloud.gov environment the broker is deployed in. For example: local, development, staging, or production."
 }
+
+variable "cloud_gov_email_notification_topic_arn" {
+  type        = string
+  description = "SNS topic ARN. Reputation notifications are sent to the Cloud.gov team for awareness."
+}
+
+variable "cloud_gov_slack_notification_topic_arn" {
+  type        = string
+  description = "SNS topic ARN. Reputation notifications are sent to the Cloud.gov team for awareness."
+}

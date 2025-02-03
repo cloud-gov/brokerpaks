@@ -8,6 +8,6 @@ RUN go build .
 
 # Create the final image based on our hardened base image.
 FROM ${base_image}
-COPY --from=build /app/docproxy /app/
+COPY --from=build /app/helper /app/
 
-CMD [ "docproxy" ]
+CMD [ "helper" ]

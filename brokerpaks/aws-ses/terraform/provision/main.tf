@@ -108,3 +108,26 @@ resource "aws_sesv2_email_identity_mail_from_attributes" "mail_from" {
     prevent_destroy = true
   }
 }
+
+resource "aws_sesv2_configuration_set" "config" {
+  configuration_set_name = "${var.instance_id}-config"
+
+  delivery_options {
+    tls_policy = "REQUIRE"
+  }
+  reputation_options {
+    reputation_metrics_enabled = true
+  }
+  suppression_options {
+    suppressed_reasons = ["BOUNCE", "COMPLAINT"]
+  }
+
+  lifecycle {
+    prevent_destroy = true
+
+    # The csb-helper will disable sending on an identity if its reputation
+    # metrics exceed a certain threshold. To avoid the CSB accidentally
+    # overwriting this change, ignore changes to the sending_enabled field.
+    ignore_changes = [sending_options["sending_enabled"]]
+  }
+}

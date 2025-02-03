@@ -26,17 +26,17 @@ jobs:
           - get: general-task
           - get: csb-image
             trigger: true
-          - get: csb-docproxy-image
+          - get: csb-helper-image
             trigger: true
       - in_parallel:
           - load_var: csb-image-repository
             file: csb-image/repository
           - load_var: csb-image-digest
             file: csb-image/digest
-          - load_var: csb-docproxy-image-repository
-            file: csb-docproxy-image/repository
-          - load_var: csb-docproxy-image-digest
-            file: csb-docproxy-image/digest
+          - load_var: csb-helper-image-repository
+            file: csb-helper-image/repository
+          - load_var: csb-helper-image-digest
+            file: csb-helper-image/digest
       - task: terraform-plan
         image: general-task
         file: terraform-templates/ci/terraform/terraform-apply.yml
@@ -55,8 +55,8 @@ jobs:
           TF_VAR_csb_broker_route_domain: ((csb-broker-route-domain-development))
           TF_VAR_csb_docker_image_name: "((.:csb-image-repository))"
           TF_VAR_csb_docker_image_version: "@((.:csb-image-digest))"
-          TF_VAR_csb_docproxy_docker_image_name: "((.:csb-docproxy-image-repository))"
-          TF_VAR_csb_docproxy_docker_image_version: "@((.:csb-docproxy-image-digest))"
+          TF_VAR_csb_helper_docker_image_name: "((.:csb-helper-image-repository))"
+          TF_VAR_csb_helper_docker_image_version: "@((.:csb-helper-image-digest))"
           TF_VAR_csb_docproxy_domain: dev.us-gov-west-1.aws-us-gov.cloud.gov
           TF_VAR_csb_org_name: ((csb-org-name))
           TF_VAR_csb_space_name: ((csb-space-name))
@@ -88,16 +88,16 @@ jobs:
           - get: general-task
           - get: csb-image
             trigger: true
-          - get: csb-docproxy-image
+          - get: csb-helper-image
             trigger: true
       - load_var: csb-image-repository
         file: csb-image/repository
       - load_var: csb-image-digest
         file: csb-image/digest
-      - load_var: csb-docproxy-image-repository
-        file: csb-docproxy-image/repository
-      - load_var: csb-docproxy-image-digest
-        file: csb-docproxy-image/digest
+      - load_var: csb-helper-image-repository
+        file: csb-helper-image/repository
+      - load_var: csb-helper-image-digest
+        file: csb-helper-image/digest
       - task: terraform-apply
         image: general-task
         file: terraform-templates/ci/terraform/terraform-apply.yml
@@ -122,17 +122,17 @@ jobs:
           - get: general-task
           - get: csb-image
             trigger: true
-          - get: csb-docproxy-image
+          - get: csb-helper-image
             trigger: true
       - in_parallel:
           - load_var: csb-image-repository
             file: csb-image/repository
           - load_var: csb-image-digest
             file: csb-image/digest
-          - load_var: csb-docproxy-image-repository
-            file: csb-docproxy-image/repository
-          - load_var: csb-docproxy-image-digest
-            file: csb-docproxy-image/digest
+          - load_var: csb-helper-image-repository
+            file: csb-helper-image/repository
+          - load_var: csb-helper-image-digest
+            file: csb-helper-image/digest
       - task: terraform-plan
         image: general-task
         file: terraform-templates/ci/terraform/terraform-apply.yml
@@ -151,8 +151,8 @@ jobs:
           TF_VAR_csb_broker_route_domain: ((csb-broker-route-domain-staging))
           TF_VAR_csb_docker_image_name: "((.:csb-image-repository))"
           TF_VAR_csb_docker_image_version: "@((.:csb-image-digest))"
-          TF_VAR_csb_docproxy_docker_image_name: "((.:csb-docproxy-image-repository))"
-          TF_VAR_csb_docproxy_docker_image_version: "@((.:csb-docproxy-image-digest))"
+          TF_VAR_csb_helper_docker_image_name: "((.:csb-helper-image-repository))"
+          TF_VAR_csb_helper_docker_image_version: "@((.:csb-helper-image-digest))"
           TF_VAR_csb_docproxy_domain: fr-stage.cloud.gov
           TF_VAR_csb_org_name: ((csb-org-name))
           TF_VAR_csb_space_name: ((csb-space-name))
@@ -184,16 +184,16 @@ jobs:
           - get: general-task
           - get: csb-image
             trigger: true
-          - get: csb-docproxy-image
+          - get: csb-helper-image
             trigger: true
       - load_var: csb-image-repository
         file: csb-image/repository
       - load_var: csb-image-digest
         file: csb-image/digest
-      - load_var: csb-docproxy-image-repository
-        file: csb-docproxy-image/repository
-      - load_var: csb-docproxy-image-digest
-        file: csb-docproxy-image/digest
+      - load_var: csb-helper-image-repository
+        file: csb-helper-image/repository
+      - load_var: csb-helper-image-digest
+        file: csb-helper-image/digest
       - task: terraform-apply
         image: general-task
         file: terraform-templates/ci/terraform/terraform-apply.yml
@@ -218,17 +218,17 @@ jobs:
           - get: general-task
           - get: csb-image
             trigger: true
-          - get: csb-docproxy-image
+          - get: csb-helper-image
             trigger: true
       - in_parallel:
           - load_var: csb-image-repository
             file: csb-image/repository
           - load_var: csb-image-digest
             file: csb-image/digest
-          - load_var: csb-docproxy-image-repository
-            file: csb-docproxy-image/repository
-          - load_var: csb-docproxy-image-digest
-            file: csb-docproxy-image/digest
+          - load_var: csb-helper-image-repository
+            file: csb-helper-image/repository
+          - load_var: csb-helper-image-digest
+            file: csb-helper-image/digest
       - task: terraform-plan
         image: general-task
         file: terraform-templates/ci/terraform/terraform-apply.yml
@@ -247,10 +247,10 @@ jobs:
           TF_VAR_csb_broker_route_domain: ((csb-broker-route-domain-production))
           TF_VAR_csb_docker_image_name: "((.:csb-image-repository))"
           TF_VAR_csb_docker_image_version: "@((.:csb-image-digest))"
-          TF_VAR_csb_docproxy_docker_image_name: "((.:csb-docproxy-image-repository))"
-          TF_VAR_csb_docproxy_docker_image_version: "@((.:csb-docproxy-image-digest))"
+          TF_VAR_csb_helper_docker_image_name: "((.:csb-helper-image-repository))"
+          TF_VAR_csb_helper_docker_image_version: "@((.:csb-helper-image-digest))"
           TF_VAR_csb_docproxy_domain: fr.cloud.gov
-          TF_VAR_csb_docproxy_instances: 2
+          TF_VAR_csb_helper_instances: 2
           TF_VAR_csb_org_name: ((csb-org-name))
           TF_VAR_csb_space_name: ((csb-space-name))
           TF_VAR_external_remote_state_reader_access_key_id: ((production-tf-state-access-key-id))
@@ -280,16 +280,16 @@ jobs:
           - get: general-task
           - get: csb-image
             trigger: true
-          - get: csb-docproxy-image
+          - get: csb-helper-image
             trigger: true
       - load_var: csb-image-repository
         file: csb-image/repository
       - load_var: csb-image-digest
         file: csb-image/digest
-      - load_var: csb-docproxy-image-repository
-        file: csb-docproxy-image/repository
-      - load_var: csb-docproxy-image-digest
-        file: csb-docproxy-image/digest
+      - load_var: csb-helper-image-repository
+        file: csb-helper-image/repository
+      - load_var: csb-helper-image-digest
+        file: csb-helper-image/digest
       - task: terraform-apply
         image: general-task
         file: terraform-templates/ci/terraform/terraform-apply.yml
@@ -354,16 +354,16 @@ resources:
     source:
       aws_access_key_id: ((ecr_aws_key))
       aws_secret_access_key: ((ecr_aws_secret))
-      repository: csb
+      repository: cg-csb
       aws_region: us-gov-west-1
       tag: latest
 
-  - name: csb-docproxy-image
+  - name: csb-helper-image
     type: registry-image
     source:
       aws_access_key_id: ((ecr_aws_key))
       aws_secret_access_key: ((ecr_aws_secret))
-      repository: csb-docproxy
+      repository: csb-helper
       aws_region: us-gov-west-1
       tag: latest
 

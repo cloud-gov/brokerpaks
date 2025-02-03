@@ -77,6 +77,16 @@ variable "rds_password" {
 
 # CSB Configuration
 
+variable "email_notification_topic_arn" {
+  type        = string
+  description = "ARN of an SNS topic. The CSB will send email alarms to the Cloud.gov team via this topic."
+}
+
+variable "slack_notification_topic_arn" {
+  type        = string
+  description = "ARN of an SNS topic. The CSB will send slack alarms to the Cloud.gov team via this topic."
+}
+
 variable "aws_ses_default_zone" {
   type        = string
   description = "When the user does not provide a domain, a subdomain will be created for them under this DNS zone."
@@ -108,26 +118,26 @@ variable "aws_region_commercial" {
   type = string
 }
 
-# Docproxy configuration
+# CSB helper service configuration
 
 variable "docproxy_domain" {
   type        = string
   description = "The parent domain in CF under which the docproxy will be routed. For example, to serve it on services.fr.cloud.gov, set this to fr.cloud.gov. The subdomain is always 'services'."
 }
 
-variable "docproxy_docker_image_name" {
+variable "helper_docker_image_name" {
   type        = string
   description = "Full name (but not tag or SHA) of the Docker image the broker will use."
 }
 
-variable "docproxy_docker_image_version" {
+variable "helper_docker_image_version" {
   type        = string
   description = "Tag or SHA of the Docker image the broker will use. For example, ':latest' or '@sha256:abc123...'."
   default     = ":latest"
 
 }
 
-variable "docproxy_instances" {
+variable "helper_instances" {
   type        = number
-  description = "Number of instances of the docproxy app to run."
+  description = "Number of instances of the helper app to run."
 }

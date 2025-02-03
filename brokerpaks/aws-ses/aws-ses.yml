@@ -79,6 +79,12 @@ provision:
     - name: cloud_gov_environment
       type: string
       default: ${config("cloud_gov.environment")}
+    - name: cloud_gov_email_notification_topic_arn
+      type: string
+      default: ${config("cloud_gov.email_notification_topic_arn")}
+    - name: cloud_gov_slack_notification_topic_arn
+      type: string
+      default: ${config("cloud_gov.slack_notification_topic_arn")}
   outputs:
     - field_name: region
       type: string
@@ -101,6 +107,9 @@ provision:
     - field_name: domain_arn
       type: string
       details: Instance SES domain identity. Used to create bindings.
+    - field_name: reputation_topic_arn
+      type: string
+      details: ARN of the SNS topic receiving alarms related to reputation metrics.
     - field_name: bounce_topic_arn
       type: string
       details: ARN of the SNS topic receiving bounce feedback notifications.
@@ -111,6 +120,7 @@ provision:
       type: string
       details: ARN of the SNS topic receiving delivery feedback notifications.
   template_refs:
+    alarms: terraform/provision/alarms.tf
     main: terraform/provision/main.tf
     notification: terraform/provision/notification.tf
     outputs: terraform/provision/outputs.tf

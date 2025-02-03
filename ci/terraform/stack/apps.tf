@@ -22,14 +22,17 @@ module "csb" {
   aws_secret_access_key_commercial = data.terraform_remote_state.external.outputs.csb.broker_user.secret_access_key_curr
   aws_region_commercial            = var.csb_aws_region_commercial
 
+  email_notification_topic_arn = data.terraform_remote_state.iaas.outputs.csb.notification_topics.email_notification_topic_arn
+  slack_notification_topic_arn = data.terraform_remote_state.iaas.outputs.csb.notification_topics.slack_notification_topic_arn
+
   org_name             = var.csb_org_name
   space_name           = var.csb_space_name
   docker_image_name    = var.csb_docker_image_name
   docker_image_version = var.csb_docker_image_version
   broker_route_domain  = var.csb_broker_route_domain
 
-  docproxy_domain               = var.csb_docproxy_domain
-  docproxy_instances            = var.csb_docproxy_instances
-  docproxy_docker_image_name    = var.csb_docproxy_docker_image_name
-  docproxy_docker_image_version = var.csb_docproxy_docker_image_version
+  docproxy_domain             = var.csb_docproxy_domain
+  helper_instances            = var.csb_helper_instances
+  helper_docker_image_name    = var.csb_helper_docker_image_name
+  helper_docker_image_version = var.csb_helper_docker_image_version
 }
